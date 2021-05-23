@@ -1,7 +1,9 @@
 import pygame, event, gv
+from simulation import draw
 
 pygame.init()
-screen = pygame.display.set_mode((765, 432), pygame.RESIZABLE)
+screen = pygame.display.set_mode((1000, 571), pygame.RESIZABLE)
+gv.screen = screen
 objects = gv.objects
 
 clock = pygame.time.Clock()
@@ -18,9 +20,11 @@ def main():
         if gv.playing or gv.frame:
             objects.simulateAuto()
             gv.frame = False
+
         objects.blitObjects(screen)
 
         event.main()
+        draw()
         pygame.display.flip()
 
 if __name__ == '__main__':

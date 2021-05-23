@@ -1,4 +1,19 @@
-import pygame, math
+import pygame, math, gv
+
+def draw():
+    if gv.playing:
+        playingDisplay = gv.font.render("Playing", 1, pygame.Color("green"))
+
+    else:
+        playingDisplay = gv.font.render("Not Playing", 1, pygame.Color("red"))
+
+    objectDisplay = gv.font.render(str(len(gv.objects.objects)) + " Objects", 1, pygame.Color("black"))
+
+    Instructions = gv.font2.render('Click to place a normal object, 1 for attractor, 2 for heavy object, 3 for negative mass object, 4 for "heavy" negative mass object', 1, pygame.Color("black"))
+
+    gv.screen.blit(playingDisplay, (5, 0))
+    gv.screen.blit(objectDisplay, (100, 0))
+    gv.screen.blit(Instructions, (200, 0))
 
 class Object(pygame.sprite.Sprite):
     def __init__(self, mX, mY, objSize, weight, name, xVel, yVel):
@@ -12,7 +27,8 @@ class Object(pygame.sprite.Sprite):
         self.object = pygame.image.load("Game\Object.png")
         self.object = pygame.transform.smoothscale(self.object, objSize)
         self.objRect = self.object.get_rect()
-        self.objRect.center = (mX, mY)
+        self.objRect.x = self.mX
+        self.objRect.y = self.mY
 
     def move(self):
         self.mX += self.vX
@@ -27,10 +43,11 @@ class Object(pygame.sprite.Sprite):
         if distance != 0:
             ratioWhole = abs(self.mX - obj2.mX) + abs(self.mY - obj2.mY)
             pullFactor = obj2.weight * self.weight * obj2.weight/distance
-            xPull = pullFactor * ((obj2.mX - self.mX) / ratioWhole) * 0.1
-            yPull = pullFactor * ((obj2.mY - self.mY) / ratioWhole) * 0.1
+            xPull = pullFactor * ((obj2.mX - self.mX) / ratioWhole) * 0.14159
+            yPull = pullFactor * ((obj2.mY - self.mY) / ratioWhole) * 0.14159
             self.vX += xPull
             self.vY += yPull
+            #notice how positive mass is attracted to negative mass in 2d but repeled in 3d.
 
         self.objRect.x = self.mX
         self.objRect.y = self.mY
