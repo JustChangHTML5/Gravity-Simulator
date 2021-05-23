@@ -1,5 +1,5 @@
 import pygame, event, gv
-from simulation import draw
+from simulation import drawWords
 
 pygame.init()
 screen = pygame.display.set_mode((1000, 571), pygame.RESIZABLE)
@@ -24,7 +24,9 @@ def main():
         objects.blitObjects(screen)
 
         event.main()
-        draw()
+        drawWords()
+        if gv.drawTrajectory:
+            objects.drawTrajectory()
         pygame.display.flip()
 
 if __name__ == '__main__':

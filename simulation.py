@@ -1,6 +1,6 @@
 import pygame, math, gv
 
-def draw():
+def drawWords():
     if gv.playing:
         playingDisplay = gv.font.render("Playing", 1, pygame.Color("green"))
 
@@ -9,15 +9,18 @@ def draw():
 
     objectDisplay = gv.font.render(str(len(gv.objects.objects)) + " Objects", 1, pygame.Color("black"))
 
-    Instructions = gv.font2.render('Click to place a normal object, 1 for attractor, 2 for heavy object, 3 for negative mass object, 4 for "heavy" negative mass object', 1, pygame.Color("black"))
+    if gv.showInstructions:
+        Instructions = gv.font2.render('Click to place a normal object, 1 for attractor, 2 for heavy object, 3 for negative mass object, 4 for "heavy" negative mass object. Hit t to show trajectories and i to stop showing the instructions.', 1, pygame.Color("black"))
 
     gv.screen.blit(playingDisplay, (5, 0))
-    gv.screen.blit(objectDisplay, (100, 0))
-    gv.screen.blit(Instructions, (200, 0))
+    gv.screen.blit(objectDisplay, (110, 0))
+    if gv.showInstructions:
+        gv.screen.blit(Instructions, (200, 0))
 
 class Object(pygame.sprite.Sprite):
     def __init__(self, mX, mY, objSize, weight, name, xVel, yVel):
         super().__init__()
+        self.radius = objSize[0] // 2
         self.name = name
         self.weight = weight
         self.vX = xVel
@@ -87,3 +90,7 @@ class Simulation:
                 for object2 in self.objects:
                     if object != object2 and object.name != "newAttractor":
                         self.simulateManual(object, object2, False)
+
+    def drawTrajectory(self):
+        for object in self.objects:
+            pygame.draw.line(gv.screen, pygame.Color("black"), (object.objRect.x + object.radius, object.objRect.y + object.radius), (object.mX + object.vX * 37 + object.radius, object.mY + object.vY * 37 + object.radius), 3)

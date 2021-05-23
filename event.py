@@ -50,6 +50,20 @@ def main():
                 x, y = pygame.mouse.get_pos()
                 objects.createObj(x - 11, y - 11, (23, 23), -3, "newObject", 0, 0)
 
+            elif event.key == pygame.K_t:
+                if gv.drawTrajectory:
+                    gv.drawTrajectory = False
+
+                else:
+                    gv.drawTrajectory = True
+
+            elif event.key == pygame.K_i:
+                if gv.showInstructions:
+                    gv.showInstructions = False
+
+                else:
+                    gv.showInstructions = True
+
             elif event.key == pygame.K_f:
                 gv.frame = True
                 gv.playing = False

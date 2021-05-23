@@ -7,6 +7,8 @@ pygame.init()
 
 playing = True
 frame = False
+drawTrajectory = False
+showInstructions = True
 screen = None
 pygame.display.set_caption("Gravity Simulator", "GS")
 Icon = pygame.image.load("Game\GameIcon.png")
