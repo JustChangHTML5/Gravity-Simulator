@@ -30,14 +30,14 @@ class Object(pygame.sprite.Sprite):
         self.object = pygame.image.load("Game\Object.png")
         self.object = pygame.transform.smoothscale(self.object, objSize)
         self.objRect = self.object.get_rect()
-        self.objRect.x = self.mX
-        self.objRect.y = self.mY
+        self.objRect.x = self.mX - self.radius
+        self.objRect.y = self.mY - self.radius
 
     def move(self):
         self.mX += self.vX
         self.mY += self.vY
-        self.objRect.x = self.mX
-        self.objRect.y = self.mY
+        self.objRect.x = self.mX - self.radius
+        self.objRect.y = self.mY - self.radius
 
     def simulate(self, obj2):
         distance = math.sqrt(abs(self.mX - obj2.mX) ** 2 + abs(self.mY - obj2.mY) ** 2)
@@ -52,8 +52,8 @@ class Object(pygame.sprite.Sprite):
             self.vY += yPull
             #notice how positive mass is attracted to negative mass in 2d but repeled in 3d.
 
-        self.objRect.x = self.mX
-        self.objRect.y = self.mY
+        self.objRect.x = self.mX - self.radius
+        self.objRect.y = self.mY - self.radius
 
 class Simulation:
     def __init__(self):

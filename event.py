@@ -7,7 +7,7 @@ def main():
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
             x, y = pygame.mouse.get_pos()
-            objects.createObj(x - 8, y - 8, (17, 17), 1, "newObject", 0, 0)
+            objects.createObj(x, y, (17, 17), 1, "newObject", 0, 0)
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 if gv.playing:
@@ -36,23 +36,23 @@ def main():
 
             elif event.key == pygame.K_1:
                 x, y = pygame.mouse.get_pos()
-                objects.createObj(x - 8, y - 8, (17, 17), 1, "newAttractor", 0, 0)
+                objects.createObj(x, y, (17, 17), 1, "newAttractor", 0, 0)
 
             elif event.key == pygame.K_2:
                 x, y = pygame.mouse.get_pos()
-                objects.createObj(x - 11, y - 11, (23, 23), 3, "newAttractor", 0, 0)
+                objects.createObj(x, y, (23, 23), 3, "newAttractor", 0, 0)
 
             elif event.key == pygame.K_3:
                 x, y = pygame.mouse.get_pos()
-                objects.createObj(x - 11, y - 11, (23, 23), 3, "newObject", 0, 0)
+                objects.createObj(x, y, (23, 23), 3, "newObject", 0, 0)
 
             elif event.key == pygame.K_4:
                 x, y = pygame.mouse.get_pos()
-                objects.createObj(x - 8, y - 8, (17, 17), -1, "newObject", 0, 0)
+                objects.createObj(x, y, (17, 17), -1, "newObject", 0, 0)
 
             elif event.key == pygame.K_5:
                 x, y = pygame.mouse.get_pos()
-                objects.createObj(x - 11, y - 11, (23, 23), -3, "newObject", 0, 0)
+                objects.createObj(x, y, (23, 23), -3, "newObject", 0, 0)
 
             elif event.key == pygame.K_t:
                 if gv.drawTrajectory:
