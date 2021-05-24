@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='Gravity Simulator',
-    version='v1.3.0',
+    version='v1.3.1',
     packages=[''],
     url='',
     license='Copyright (c) 2021 JustChangHTML5',
@@ -16,3 +16,5 @@ setup(
 #v1.2.0, word stuff and negative mass.
 
 #v1.3.0, Trajectory and Instructions.
+
+#1.3.1, new attractor type

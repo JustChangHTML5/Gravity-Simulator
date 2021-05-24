@@ -10,7 +10,7 @@ def drawWords():
     objectDisplay = gv.font.render(str(len(gv.objects.objects)) + " Objects", 1, pygame.Color("black"))
 
     if gv.showInstructions:
-        Instructions = gv.font2.render('Click to place a normal object, 1 for attractor, 2 for heavy object, 3 for negative mass object, 4 for "heavy" negative mass object. Hit t to show trajectories, d to undo, c to clear, and i to stop showing the instructions.', 1, pygame.Color("black"))
+        Instructions = gv.font2.render('Click to place a normal object, 1 for attractor, 2 for heavy attractor, 3 for heavy object, 4 for negative mass object, 5 for "heavy" negative mass object. Hit t to show trajectories, d to undo, c to clear, and i to stop showing the instructions.', 1, pygame.Color("black"))
 
     gv.screen.blit(playingDisplay, (5, 0))
     gv.screen.blit(objectDisplay, (110, 0))

@@ -40,13 +40,17 @@ def main():
 
             elif event.key == pygame.K_2:
                 x, y = pygame.mouse.get_pos()
-                objects.createObj(x - 11, y - 11, (23, 23), 3, "newObject", 0, 0)
+                objects.createObj(x - 11, y - 11, (23, 23), 3, "newAttractor", 0, 0)
 
             elif event.key == pygame.K_3:
                 x, y = pygame.mouse.get_pos()
-                objects.createObj(x - 8, y - 8, (17, 17), -1, "newObject", 0, 0)
+                objects.createObj(x - 11, y - 11, (23, 23), 3, "newObject", 0, 0)
 
             elif event.key == pygame.K_4:
+                x, y = pygame.mouse.get_pos()
+                objects.createObj(x - 8, y - 8, (17, 17), -1, "newObject", 0, 0)
+
+            elif event.key == pygame.K_5:
                 x, y = pygame.mouse.get_pos()
                 objects.createObj(x - 11, y - 11, (23, 23), -3, "newObject", 0, 0)
 
