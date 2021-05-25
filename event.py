@@ -2,12 +2,28 @@ import pygame, sys, gv
 from gv import objects
 
 pygame.init()
+isClicking = False
+mouseMovednot = True
+x, y = 0, 0
 
 def main():
+    global x, y, isClicking, mouseMovednot
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
+            isClicking = True
             x, y = pygame.mouse.get_pos()
-            objects.createObj(x, y, (17, 17), 1, "newObject", 0, 0)
+
+        elif event.type == pygame.MOUSEBUTTONUP:
+            isClicking = False
+            if mouseMovednot:
+                x, y = pygame.mouse.get_pos()
+                objects.createObj(x, y, (17, 17), 1, "newObject", 0, 0)
+
+            else:
+                mouseMovednot = True
+
+            gv.oldX, gv.oldY = -1000, -1000
+
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 if gv.playing:

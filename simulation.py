@@ -33,6 +33,10 @@ class Object(pygame.sprite.Sprite):
         self.objRect.x = self.mX - self.radius
         self.objRect.y = self.mY - self.radius
 
+    def changePos(self, x, y):
+        self.mX += x
+        self.mY += y
+
     def move(self):
         self.mX += self.vX
         self.mY += self.vY
@@ -91,6 +95,10 @@ class Simulation:
                     if object != object2 and object.name != "newAttractor":
                         self.simulateManual(object, object2, False)
 
+    def move(self, x, y):
+        for object in self.objects:
+            object.changePos(x, y)
+
     def drawTrajectory(self):
         for object in self.objects:
-            pygame.draw.line(gv.screen, pygame.Color("black"), (object.objRect.x + object.radius, object.objRect.y + object.radius), (object.mX + object.vX * 37 + object.radius, object.mY + object.vY * 37 + object.radius), 3)
+            pygame.draw.line(gv.screen, pygame.Color("black"), (object.objRect.x + object.radius, object.objRect.y + object.radius), (object.mX + object.vX * 37, object.mY + object.vY * 37), 3)
