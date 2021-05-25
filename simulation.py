@@ -36,6 +36,8 @@ class Object(pygame.sprite.Sprite):
     def changePos(self, x, y):
         self.mX += x
         self.mY += y
+        self.objRect.x = self.mX - self.radius
+        self.objRect.y =self.mY - self.radius
 
     def move(self):
         self.mX += self.vX
@@ -48,12 +50,15 @@ class Object(pygame.sprite.Sprite):
         self.mX += self.vX
         self.mY += self.vY
         if distance != 0:
-            ratioWhole = abs(self.mX - obj2.mX) + abs(self.mY - obj2.mY)
-            pullFactor = obj2.weight * self.weight * obj2.weight/distance
-            xPull = pullFactor * ((obj2.mX - self.mX) / ratioWhole) * 0.14159
-            yPull = pullFactor * ((obj2.mY - self.mY) / ratioWhole) * 0.14159
-            self.vX += xPull
-            self.vY += yPull
+            try:
+                ratioWhole = abs(self.mX - obj2.mX) + abs(self.mY - obj2.mY)
+                pullFactor = obj2.weight * self.weight * obj2.weight/distance
+                xPull = pullFactor * ((obj2.mX - self.mX) / ratioWhole) * 0.14159
+                yPull = pullFactor * ((obj2.mY - self.mY) / ratioWhole) * 0.14159
+                self.vX += xPull
+                self.vY += yPull
+            except:
+                pass
             #notice how positive mass is attracted to negative mass in 2d but repeled in 3d.
 
         self.objRect.x = self.mX - self.radius

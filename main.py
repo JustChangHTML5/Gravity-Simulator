@@ -23,8 +23,8 @@ def main():
         event.main()
 
         if event.isClicking:
-            if event.x != gv.oldX or event.y != gv.oldY:
-                if gv.oldX != -1000 and gv.oldY != 1000:
+            if abs(event.x - gv.oldX) >= 1 or abs(event.y - gv.oldY) >= 1:
+                if gv.oldX != -1000 and gv.oldY != -1000:
                     event.mouseMovednot = False
                     gv.objects.move((event.x - gv.oldX), (event.y - gv.oldY))
                 gv.oldX, gv.oldY = event.x, event.y

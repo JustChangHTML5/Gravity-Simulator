@@ -88,5 +88,8 @@ def main():
                 gv.frame = True
                 gv.playing = False
 
+            elif event.key == pygame.K_ESCAPE:
+                pygame.display.quit(), sys.exit()
+
         elif event.type == pygame.QUIT:
             pygame.display.quit(), sys.exit()
