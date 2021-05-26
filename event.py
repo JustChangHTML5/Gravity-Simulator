@@ -88,6 +88,12 @@ def main():
                 gv.frame = True
                 gv.playing = False
 
+            elif event.key == pygame.K_s:
+                gv.objects.save()
+
+            elif event.key == pygame.K_l:
+                gv.objects.load()
+
             elif event.key == pygame.K_ESCAPE:
                 pygame.display.quit(), sys.exit()
 

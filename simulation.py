@@ -1,4 +1,5 @@
 import pygame, math, gv
+from ast import literal_eval
 
 def drawWords():
     if gv.playing:
@@ -20,6 +21,7 @@ def drawWords():
 class Object(pygame.sprite.Sprite):
     def __init__(self, mX, mY, objSize, weight, name, xVel, yVel):
         super().__init__()
+        self.objSize = objSize
         self.radius = objSize[0] // 2
         self.name = name
         self.weight = weight
@@ -107,3 +109,21 @@ class Simulation:
     def drawTrajectory(self):
         for object in self.objects:
             pygame.draw.line(gv.screen, pygame.Color("black"), (object.objRect.x + object.radius, object.objRect.y + object.radius), (object.mX + object.vX * 37, object.mY + object.vY * 37), 3)
+
+    def save(self):
+        saveList = []
+        for object in self.objects:
+            saveList.append((object.mX, object.mY, object.objSize, object.weight, object.name, object.vX, object.vY))
+
+        saveFile = open("Game\simulation.txt", "w")
+        saveFile.write(repr(saveList))
+        saveFile.close()
+
+    def load(self):
+        dataFile = open("Game\simulation.txt", "r")
+        data = dataFile.read()
+        dataFile.close()
+        data = literal_eval(data)
+        self.clear()
+        for object in data:
+            self.createObj(object[0], object[1], object[2], object[3], object[4], object[5], object[6])
